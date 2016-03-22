@@ -1,0 +1,14 @@
+{
+    "name"          : "FreelanceSurvey",
+    "licence"       : "MIT",
+    "type"          : "project",
+    "description"   : "A simple tool for freelancers who want to know the tastes of their customers",
+    "autoload"      : {
+        "psr-0"     : {
+            ""      : "src/"
+        }
+    },
+    "require"       : {
+         "gabordemooij/redbean": "dev-master"
+    }
+}
