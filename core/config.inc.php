@@ -1,13 +1,23 @@
 <?php
 
-/** DATABASE **/
+define('DB_HOST','localhost');
+define('DB_NAME','freesurvbdd');
+define('DB_USER','root');
+define('DB_PASS','root');
 
-define('DB_TYPE', 'mysql');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'freelancesurvey');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+try
+{
+    // Try to connect to database
+    $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASS);
 
-/** REDBEAN CONFIG **/
+    // Set fetch mode to object
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
+}
+catch (Exception $e)
+{
+    // Failed to connect
+    die('Cound not connect');
+}
 
-define('REDBEAN_MODEL_PREFIX', '\\freelanceSurvey\\Model');
+// Delete next line if working
+// die('All good ;)');
