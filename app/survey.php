@@ -66,4 +66,6 @@ require_once __DIR__ . '/../core/bootstrap.php';
 
   </section>
 
+  <?php require_once __DIR__ . '/../core/templates/footer.php'; ?>
+
 </body>

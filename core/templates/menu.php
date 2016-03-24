@@ -10,7 +10,7 @@
         <span class="header-item"><a class="is-active" href="#">Home</a></span>
         <span class="header-item"><a href="#">How it works</a></span>
         <span class="header-item"><a href="#">Documentation</a></span>
-        <span class="header-item"><a class="button is-primary is-inverted"><i class="fa fa-plus-square"></i>Create a survey</a></span>
+        <span class="header-item"><a href="/../app/addSurvey.php" class="button is-primary is-inverted"><i class="fa fa-plus-square"></i>Create a survey</a></span>
       </div>
 
     </div>
