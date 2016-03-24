@@ -3,7 +3,7 @@
     <div class="container">
 
       <div class="header-left">
-        <a class="header-item" href="#"><img src="/../core/img/logo.png" alt="Logo"></a>
+        <a class="header-item" href="/../app/app.php"><img src="/../core/img/logo.png" alt="Logo"></a>
       </div>
 
       <div class="header-right header-menu">
