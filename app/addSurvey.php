@@ -25,7 +25,7 @@ require_once __DIR__ . '/../core/bootstrap.php';
         <h1 class="title">Create a Survey.</h1>
         <h2 class="subtitle">This will allow you to send the survey to your customers.</h2>
         <br>
-        <form class="addSurvey" action=" ">
+        <form class="addSurvey" action="addItem.php" method="post">
           <p class="control">
             <input class="input" type="text" name="name" placeholder="Name of the Survey">
           </p>

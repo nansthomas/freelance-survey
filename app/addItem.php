@@ -48,19 +48,21 @@ require_once __DIR__ . '/../core/bootstrap.php';
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
               </p>
             </div>
-      <nav class="navbar">
-        <div class="navbar-left">
-          <a class="navbar-item">
-            <span class="icon is-small"><i class="fa fa-pencil-square-o"></i></span>
-          </a>
-          <a class="navbar-item">
-            <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
-          </a>
-        </div>
-      </nav>
-    </div>
-  </article>
-</div>
+
+            <nav class="navbar">
+              <div class="navbar-left">
+                <a class="navbar-item">
+                  <span class="icon is-small"><i class="fa fa-pencil-square-o"></i></span>
+                </a>
+
+                <a class="navbar-item">
+                  <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 

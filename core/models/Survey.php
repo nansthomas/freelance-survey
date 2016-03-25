@@ -16,7 +16,6 @@ class Survey {
 
         $query->execute();
 
-        // Éxécution de la requête et récupération des données
         $survey = $query->fetchAll();
 
         return $survey;
@@ -24,18 +23,29 @@ class Survey {
 
     public function readBySlug ($slug) {
 
-        $query = $this->pdo->prepare('SELECT * FROM Survey as s WHERE s.slug = :slug LIMIT 1');
+      $query = $this->pdo->prepare('SELECT * FROM Survey as s WHERE s.slug = :slug LIMIT 1');
 
-        $query->bindParam(':slug', $slug);
+      $query->bindParam(':slug', $slug);
 
-        $query->execute();
+      $query->execute();
 
-        $survey = $query->fetch();
+      return $query->fetch();
+    }
 
-        $items = $this->items->getItemBySurveyId($survey->id);
+    public function readItem ($slug, $item_slug) {
 
-        $survey->items = $items;
+        $survey = $this->readBySlug($slug);
+
+        $items = $this->items->getItemBySurveyId($survey->id, $item_slug);
+
+        $survey->item = $items;
 
         return $survey;
     }
+
+    // public function addSurvey ($name, $description) {
+    //
+    //
+    //
+    // }
 }
