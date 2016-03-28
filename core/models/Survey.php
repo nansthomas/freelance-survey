@@ -43,9 +43,9 @@ class Survey {
         return $survey;
     }
 
-    // public function addSurvey ($name, $description) {
-    //
-    //
-    //
-    // }
+    public function addSurvey ($name, $description) {
+
+
+
+    }
 }

@@ -4,6 +4,20 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../core/bootstrap.php';
 
+// $survey = new Survey($pdo, new Item($pdo));
+
+// $s = $survey->addSurvey($_GET['survey_slug'], $_GET['item_slug']);
+
+$survey_id = $_POST['survey_id'];
+$title = $_POST['title'];
+$picture = $_POST['picture'];
+$source = $_POST['source'];
+$description = $_POST['description'];
+$slug = str_replace(' ', '-', $title);
+
+$item = New Item($pdo);
+$add = $item->addNewItem($survey_id, $title, $picture, $source, $description, $slug);
+
 ?>
 
 <head>
@@ -16,84 +30,43 @@ require_once __DIR__ . '/../core/bootstrap.php';
 
 <body>
 
-  <section class="hero is-primary is-left">
+  <section class="hero is-primary is-fullheight">
 
     <?php require_once __DIR__ . '/../core/templates/menu.php'; ?>
 
     <div class="hero-content">
       <div class="container">
-        <h1 class="title">Add some items.</h1>
-        <h2 class="subtitle">Here, just add what you want to make love or not your customers.</h2>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="heading">
-        <a class="button is-primary">Add an item</a>
-      </div>
-      <div class="box">
-        <article class="media">
-          <div class="media-left">
-            <figure class="image is-64x64">
-              <img src="/../core/img/demoimg.jpeg" alt="Image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong>Title</strong> <small>www.dribbble.com</small>
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-              </p>
-            </div>
-
-            <nav class="navbar">
-              <div class="navbar-left">
-                <a class="navbar-item">
-                  <span class="icon is-small"><i class="fa fa-pencil-square-o"></i></span>
-                </a>
-
-                <a class="navbar-item">
-                  <span class="icon is-small"><i class="fa fa-trash-o"></i></span>
-                </a>
-              </div>
-            </nav>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- <section class="hero is-primary is-fullheight is-left">
-
-    <?php require_once __DIR__ . '/../core/templates/menu.php'; ?>
-
-    <div class="hero-content">
-      <div class="container">
-        <h1 class="title">Create a Survey.</h1>
-        <h2 class="subtitle">This will allow you to send the survey to your customers.</h2>
+        <h1 class="title">Add a Item.</h1>
+        <h2 class="subtitle">You can add as many item you want.</h2>
         <br>
-        <form class="addSurvey" action=" ">
-          <p class="control">
-            <input class="input" type="text" name="name" placeholder="Name of the Survey">
+        <form class="addSurvey" action="addItem.php" method="post">
+          <p class="control is-centered">
+            <span class="select">
+              <select name="survey_id">
+                <option value="1">1</option>
+              </select>
+            </span>
           </p>
-          <p class="control is-loading">
-            <input class="input" type="text" name="slug" placeholder="Slug" value="">
+          <p class="control">
+            <input class="input" type="text" name="title" placeholder="Title" value="">
+          </p>
+          <p class="control">
+            <input class="input" type="text" name="picture" placeholder="Link to picture" value="">
+          </p>
+          <p class="control">
+            <input class="input" type="text" name="source" placeholder="Source (eg: dribbble)" value="">
           </p>
           <p class="control">
             <textarea class="textarea" name="description" placeholder="Description"></textarea>
           </p>
-          <p class="control is-centered">
-            <button class="button is-primary is-loading">Create</button>
+          <p class="control">
+            <input class="button is-primary is-medium" type="submit" value="Create">
           </p>
         </form>
       </div>
     </div>
 
-  </section> -->
+  </section>
 
   <?php require_once __DIR__ . '/../core/templates/footer.php'; ?>
 

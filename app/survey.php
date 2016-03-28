@@ -37,7 +37,7 @@ $s = $survey->readItem($_GET['survey_slug'], $_GET['item_slug']);
             <div class="content">
               <h3><?= $s->item->title ?></h3>
               <p><?= $s->item->description ?></p>
-              <a href="#">#dribbble</a> <a href="#">#logodesign</a>
+              <a href="#">#<?= $s->item->source ?></a>
               <br>
               <br>
               <a href="vote.php?survey_slug=<?= $s->slug ?>&item_slug=<?= $s->item->slug ?>&vote=1" class="button is-success" value="true" name="item_2"><i class="fa fa-check"></i>Like</a>

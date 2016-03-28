@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../core/bootstrap.php';
 
+$survey = new Survey($pdo, new Item($pdo));
+
+$s = $survey->addSurvey($_GET['survey_slug'], $_GET['item_slug']);
+
 ?>
 
 <head>

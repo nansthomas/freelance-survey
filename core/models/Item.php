@@ -56,4 +56,19 @@ class Item {
 
       return $item;
     }
+
+    public function addNewItem ($survey_id, $title, $picture, $source, $description, $slug) {
+
+      $itemQuery = $this->pdo->prepare('INSERT INTO Item VALUES ('', ':title', ':picture', ':source', ':description', '', '', ':slug', ':survey_id', '1')');
+
+      $itemQuery->bindParam(':title', $title);
+      $itemQuery->bindParam(':picture', $picture);
+      $itemQuery->bindParam(':source', $source);
+      $itemQuery->bindParam(':description', $description);
+      $itemQuery->bindParam(':slug', $slug);
+
+      $q = $itemQuery->execute();
+
+      return $q;
+    }
 }

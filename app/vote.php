@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 require_once __DIR__ . '/../core/bootstrap.php';
 
 $item = New Item($pdo);
-$survey = new Survey($pdo, $item);
+$survey = New Survey($pdo, $item);
 
 $surveyObj = $survey->readBySlug($_GET['survey_slug']);
 
