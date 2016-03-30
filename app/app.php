@@ -4,11 +4,6 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../core/bootstrap.php';
 
-// Affichage des données
-// echo '<pre>';
-// print_r($user->getUser());
-// echo '</pre>';
-
 ?>
 
 <head>
