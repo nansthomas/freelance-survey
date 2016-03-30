@@ -6,7 +6,9 @@ require_once __DIR__ . '/../core/bootstrap.php';
 
 $survey = new Survey($pdo, new Item($pdo));
 
-$s = $survey->readItem($_GET['survey_slug'], $_GET['item_slug']);
+$item_slug = (isset($_GET['item_slug'])) ? $_GET['item_slug'] : null;
+
+$s = $survey->readItem($_GET['survey_slug'], $item_slug);
 
 ?>
 

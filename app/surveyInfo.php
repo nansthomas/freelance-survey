@@ -4,6 +4,13 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../core/bootstrap.php';
 
+$name = $_POST['name'];
+$description = $_POST['description'];
+$slug = str_replace(' ', '-', $name);
+
+$survey = New Survey($pdo);
+$add = $survey->addNewSurvey($name, $slug, $description);
+
 ?>
 
 <head>
@@ -26,10 +33,10 @@ require_once __DIR__ . '/../core/bootstrap.php';
         <h2 class="subtitle">After adding items you can share this link to your customers.</h2>
         <br>
         <p class="control">
-          <input class="input is-large" type="text" readonly="readonly" value="http://localhost:8888/app/survey.php?survey_slug=site-hetic">
+          <input class="input is-large" type="text" readonly="readonly" value="http://localhost:8888/app/survey.php?survey_slug=<?= $slug ?>">
         </p>
         <br>
-        <a href="addItem.php" class="button is-primary is-medium additem"><i class="fa fa-plus"></i> Ajouter des items</a>
+        <a href="addItem.php?survey_id=<?= $add ?>&count=1" class="button is-primary is-medium additem"><i class="fa fa-plus"></i> Ajouter des items</a>
       </div>
     </div>
 

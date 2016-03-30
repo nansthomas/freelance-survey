@@ -13,4 +13,8 @@ $vote = $item->voteItemBySlug($surveyObj->id, $_GET['item_slug'], $_GET['vote'])
 
 $next = $item->getNextItem($surveyObj->id, $_GET['item_slug']);
 
-header('Location: survey.php?survey_slug='. $_GET['survey_slug'] .'&item_slug='. $next->slug);
+if ($next == false) {
+  header('Location: result.php?survey_slug='. $_GET['survey_slug']);
+} else {
+  header('Location: survey.php?survey_slug='. $_GET['survey_slug'] .'&item_slug='. $next->slug);
+}

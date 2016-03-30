@@ -35,3 +35,12 @@
 .button .fa {
   font-size: 14px;
 }
+
+.result {
+  text-align: center;
+  .card {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 30px;
+  }
+}

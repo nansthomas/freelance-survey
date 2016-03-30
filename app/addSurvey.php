@@ -4,13 +4,6 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../core/bootstrap.php';
 
-$name = $_POST['name'];
-$description = $_POST['description'];
-$slug = str_replace(' ', '-', $name);
-
-$survey = New Survey($pdo);
-$add = $survey->addNewSurvey($name, $slug, $description);
-
 ?>
 
 <head>
@@ -32,7 +25,7 @@ $add = $survey->addNewSurvey($name, $slug, $description);
         <h1 class="title">Create a Survey.</h1>
         <h2 class="subtitle">This will allow you to send the survey to your customers.</h2>
         <br>
-        <form class="addSurvey" action="addSurvey.php" method="post">
+        <form class="addSurvey" action="surveyInfo.php" method="post">
           <p class="control">
             <input class="input" type="text" name="name" placeholder="Name of the Survey">
           </p>

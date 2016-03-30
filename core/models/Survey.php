@@ -2,11 +2,13 @@
 
 class Survey {
 
-    function __construct ($pdo, $item) {
+    function __construct ($pdo, $item = null) {
 
         $this->pdo = $pdo;
-        $this->items = $item;
 
+        if ($item) {
+          $this->items = $item;
+        }
     }
 
     // Select all the Survey by the ID
@@ -61,6 +63,13 @@ class Survey {
 
       $q = $itemQuery->execute();
 
-      return $q;
+      return $this->pdo->lastInsertId();
+    }
+
+    public function getLovedItems ($slug) {
+
+        $survey = $this->readBySlug($slug);
+
+        return $this->items->getLovedItem($survey->id);
     }
 }

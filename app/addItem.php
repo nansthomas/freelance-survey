@@ -4,15 +4,21 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../core/bootstrap.php';
 
-$survey_id = $_POST['survey_id'];
-$title = $_POST['title'];
-$picture = $_POST['picture'];
-$source = $_POST['source'];
-$description = $_POST['description'];
-$slug = str_replace(' ', '-', $title);
+$survey_id = $_GET['survey_id'];
+$count = $_GET['count'];
 
-$item = New Item($pdo);
-$add = $item->addNewItem($survey_id, $title, $picture, $source, $description, $slug);
+if ($_POST) {
+
+  $title = $_POST['title'];
+  $picture = $_POST['picture'];
+  $source = $_POST['source'];
+  $croissant = $_POST['croissant'];
+  $description = $_POST['description'];
+  $slug = str_replace(' ', '-', $title);
+
+  $item = New Item($pdo);
+  $add = $item->addNewItem($survey_id, $title, $picture, $source, $description, $slug, $croissant);
+}
 
 ?>
 
@@ -35,11 +41,11 @@ $add = $item->addNewItem($survey_id, $title, $picture, $source, $description, $s
         <h1 class="title">Add a Item.</h1>
         <h2 class="subtitle">You can add as many item you want.</h2>
         <br>
-        <form class="addSurvey" action="addItem.php" method="post">
+        <form class="addSurvey" action="addItem.php?survey_id=<?= $survey_id ?>&count=<?= $count + 1 ?>" method="post">
           <p class="control is-centered">
             <span class="select">
               <select name="survey_id">
-                <option value="1">1</option>
+                <option value="<?= $survey_id ?>"><?= $survey_id ?></option>
               </select>
             </span>
           </p>
@@ -56,6 +62,7 @@ $add = $item->addNewItem($survey_id, $title, $picture, $source, $description, $s
             <textarea class="textarea" name="description" placeholder="Description"></textarea>
           </p>
           <p class="control">
+            <input type="hidden" name="croissant" value="<?= $count ?>">
             <input class="button is-primary is-medium" type="submit" value="Create">
           </p>
         </form>

@@ -11,16 +11,21 @@ class Item {
 
     public function getItemBySurveyId ($id, $slug) {
 
+
+      if ($slug) {
         $itemQuery = $this->pdo->prepare('SELECT * FROM Item as i WHERE i.survey_id = :survey_id AND i.slug = :slug');
-
-        $itemQuery->bindParam(':survey_id', $id);
         $itemQuery->bindParam(':slug', $slug);
+      } else {
+        $itemQuery = $this->pdo->prepare('SELECT * FROM Item as i WHERE i.survey_id = :survey_id AND i.croissant = 1');
+      }
 
-        $itemQuery->execute();
+      $itemQuery->bindParam(':survey_id', $id);
 
-        $items = $itemQuery->fetch();
+      $itemQuery->execute();
 
-        return $items;
+      $items = $itemQuery->fetch();
+
+      return $items;
     }
 
     // We filter the Item to getNextItem Function
@@ -67,9 +72,9 @@ class Item {
 
     // Create a New Item
 
-    public function addNewItem ($survey_id, $title, $picture, $source, $description, $slug) {
+    public function addNewItem ($survey_id, $title, $picture, $source, $description, $slug, $count) {
 
-      $itemQuery = $this->pdo->prepare("INSERT INTO Item (title, picture, source, description, slug, Survey_id, User_id) VALUES (:title, :picture, :source, :description, :slug, :survey_id, 1)");
+      $itemQuery = $this->pdo->prepare("INSERT INTO Item (title, picture, source, description, slug, Survey_id, User_id, croissant) VALUES (:title, :picture, :source, :description, :slug, :survey_id, 1, :croissant)");
 
       $itemQuery->bindParam(':title', $title);
       $itemQuery->bindParam(':picture', $picture);
@@ -77,9 +82,23 @@ class Item {
       $itemQuery->bindParam(':description', $description);
       $itemQuery->bindParam(':slug', $slug);
       $itemQuery->bindParam(':survey_id', $survey_id);
+      $itemQuery->bindParam(':croissant', $count);
 
       $q = $itemQuery->execute();
 
       return $q;
+    }
+
+    public function getLovedItem ($survey_id) {
+
+      $itemQuery = $this->pdo->prepare('SELECT * FROM Item as i WHERE i.survey_id = :survey_id AND i.like = 1');
+
+      $itemQuery->bindParam(':survey_id', $survey_id);
+
+      $itemQuery->execute();
+
+      $lovedItems = $itemQuery->fetchAll();
+
+      return $lovedItems;
     }
 }
