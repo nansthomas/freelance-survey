@@ -15,6 +15,7 @@ Freelance Survey est un service qui permet de connaître les goûts de certains 
 
 ## Amélioration Futur 
 
+- [ ] Recommenter proprement tout le code
 - [ ] Connecter les API des services (Dribbble etc.) 
 - [ ] Gérer la création de compte
 - [ ] Protéger les inputs et globalement tout le site des Injections
