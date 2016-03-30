@@ -6,7 +6,10 @@ class Survey {
 
         $this->pdo = $pdo;
         $this->items = $item;
+
     }
+
+    // Select all the Survey by the ID
 
     public function getSurveyById ($id) {
 
@@ -21,6 +24,8 @@ class Survey {
         return $survey;
     }
 
+    // Select Only one Survey by the slug
+
     public function readBySlug ($slug) {
 
       $query = $this->pdo->prepare('SELECT * FROM Survey as s WHERE s.slug = :slug LIMIT 1');
@@ -32,6 +37,7 @@ class Survey {
       return $query->fetch();
     }
 
+    // Get Item Slug in the Parent Survey
     public function readItem ($slug, $item_slug) {
 
         $survey = $this->readBySlug($slug);
@@ -43,9 +49,18 @@ class Survey {
         return $survey;
     }
 
-    public function addSurvey ($name, $description) {
+    // Add a New Survey
 
+    public function addNewSurvey ($name, $slug, $description) {
 
+      $itemQuery = $this->pdo->prepare("INSERT INTO Survey (name, slug, description, User_id) VALUES (:name, :slug, :description, 1)");
 
+      $itemQuery->bindParam(':name', $name);
+      $itemQuery->bindParam(':slug', $slug);
+      $itemQuery->bindParam(':description', $description);
+
+      $q = $itemQuery->execute();
+
+      return $q;
     }
 }

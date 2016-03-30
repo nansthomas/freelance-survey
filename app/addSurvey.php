@@ -4,9 +4,12 @@ error_reporting(E_ALL);
 
 require_once __DIR__ . '/../core/bootstrap.php';
 
-$survey = new Survey($pdo, new Item($pdo));
+$name = $_POST['name'];
+$description = $_POST['description'];
+$slug = str_replace(' ', '-', $name);
 
-$s = $survey->addSurvey($_GET['survey_slug'], $_GET['item_slug']);
+$survey = New Survey($pdo);
+$add = $survey->addNewSurvey($name, $slug, $description);
 
 ?>
 
@@ -29,24 +32,39 @@ $s = $survey->addSurvey($_GET['survey_slug'], $_GET['item_slug']);
         <h1 class="title">Create a Survey.</h1>
         <h2 class="subtitle">This will allow you to send the survey to your customers.</h2>
         <br>
-        <form class="addSurvey" action="addItem.php" method="post">
+        <form class="addSurvey" action="addSurvey.php" method="post">
           <p class="control">
             <input class="input" type="text" name="name" placeholder="Name of the Survey">
-          </p>
-          <p class="control is-loading">
-            <input class="input" type="text" name="slug" placeholder="Slug" value="">
           </p>
           <p class="control">
             <textarea class="textarea" name="description" placeholder="Description"></textarea>
           </p>
           <p class="control is-centered">
-            <button class="button is-primary is-loading">Create</button>
+            <button class="button is-primary is-loading create">Create</button>
           </p>
         </form>
       </div>
     </div>
 
   </section>
+
+  <script type="text/javascript">
+
+  // Change the button Statut
+
+  var input = document.querySelector('textarea');
+  var create = document.querySelector('.create');
+
+  input.addEventListener('input', function(){
+    if (input.value == "") {
+      create.classList.add("is-loading");
+    } else {
+      create.classList.remove("is-loading");
+    }
+
+  });
+
+  </script>
 
   <?php require_once __DIR__ . '/../core/templates/footer.php'; ?>
 

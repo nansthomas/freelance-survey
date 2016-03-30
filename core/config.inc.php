@@ -18,6 +18,3 @@ catch (Exception $e)
     // Failed to connect
     die('Cound not connect');
 }
-
-// Delete next line if working
-// die('All good ;)');

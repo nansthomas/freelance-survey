@@ -7,6 +7,8 @@ class Item {
         $this->pdo = $pdo;
     }
 
+    // Recupere the Item in the good SurveyID
+
     public function getItemBySurveyId ($id, $slug) {
 
         $itemQuery = $this->pdo->prepare('SELECT * FROM Item as i WHERE i.survey_id = :survey_id AND i.slug = :slug');
@@ -20,6 +22,8 @@ class Item {
 
         return $items;
     }
+
+    // We filter the Item to getNextItem Function
 
     public function getItemBySort ($id, $sort = 1) {
 
@@ -35,6 +39,19 @@ class Item {
       return $items;
     }
 
+    // GetNewtItem
+
+    public function getNextItem ($id, $slug) {
+
+      $curr = $this->getItemBySurveyId($id, $slug);
+
+      $item = $this->getItemBySort($id, intval($curr->croissant + 1));
+
+      return $item;
+    }
+
+    // Update in the Database, True or False for the vote
+
     public function voteItemBySlug ($survey_id, $slug, $vote) {
 
       $itemQuery = $this->pdo->prepare('UPDATE Item as i SET i.like=:vote WHERE i.survey_id = :survey_id AND i.slug = :slug');
@@ -48,24 +65,18 @@ class Item {
       return $q;
     }
 
-    public function getNextItem ($id, $slug) {
-
-      $curr = $this->getItemBySurveyId($id, $slug);
-
-      $item = $this->getItemBySort($id, intval($curr->croissant + 1));
-
-      return $item;
-    }
+    // Create a New Item
 
     public function addNewItem ($survey_id, $title, $picture, $source, $description, $slug) {
 
-      $itemQuery = $this->pdo->prepare('INSERT INTO Item VALUES ('', ':title', ':picture', ':source', ':description', '', '', ':slug', ':survey_id', '1')');
+      $itemQuery = $this->pdo->prepare("INSERT INTO Item (title, picture, source, description, slug, Survey_id, User_id) VALUES (:title, :picture, :source, :description, :slug, :survey_id, 1)");
 
       $itemQuery->bindParam(':title', $title);
       $itemQuery->bindParam(':picture', $picture);
       $itemQuery->bindParam(':source', $source);
       $itemQuery->bindParam(':description', $description);
       $itemQuery->bindParam(':slug', $slug);
+      $itemQuery->bindParam(':survey_id', $survey_id);
 
       $q = $itemQuery->execute();
 
