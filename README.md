@@ -7,6 +7,8 @@ Freelance Survey est un service qui permet de connaître les goûts de certains 
 - On envoie le lien du Survey au client qui "Like" ou "Dislike" 
 - On récupère dans une page résultat uniquement les Items likés par le client
 
+Démo video : https://goo.gl/QDxdu8
+
 ## Comment lancer
 
 - Télécharger le Global .zip
